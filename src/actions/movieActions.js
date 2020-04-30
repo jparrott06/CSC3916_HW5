@@ -52,7 +52,7 @@ export function fetchMovies() {
             .catch( (e) => console.log(e) );
     }
 }
-
+//added Authorization to submitForm header, based on how my backend handles GET by movieId
 export function fetchMovie(movieId){
     const env = runtimeEnv();
     return dispatch => {
@@ -76,7 +76,7 @@ export function fetchMovie(movieId){
             .catch( (e) => console.log(e) );
     }
 }
-
+//added Authorization to submitForm header, based on how my backend handles POST
 export function submitForm(data){
     const env = runtimeEnv();
     return dispatch => {

@@ -20,11 +20,11 @@ import {submitForm} from "../actions/movieActions";
 
 class Movie extends Component {
 
-    constructor(props) {
+    constructor(props) { //our constructor to initialize description, rating to ''
         super(props);
 
-        this.updateDetails = this.updateDetails.bind(this);
-        this.submitReview = this.submitReview.bind(this);
+        this.updateDetails = this.updateDetails.bind(this); //*Must* bind state to these functions.
+        this.submitReview = this.submitReview.bind(this); //will be calling them below to make a new review.
 
         this.state = {
             details:{
@@ -36,27 +36,27 @@ class Movie extends Component {
 
     componentDidMount() {
 
-        const {dispatch} = this.props;
+        const {dispatch} = this.props; //checks if component mounted.
 
-        if (this.props.selectedMovie == null) {
+        if (this.props.selectedMovie == null) { //if null, fetchMovie is called with movieId properties
             dispatch(fetchMovie(this.props.movieId));
         }
 
     }
 
-    updateDetails(event){
+    updateDetails(event){ //inspired by register.js's updateDetails
         let updateDetails = Object.assign({}, this.state.details);
 
         updateDetails[event.target.id] = event.target.value;
-        this.setState({
+        this.setState({ //use setState instead of changing directly.
             details: updateDetails
         });
     }
 
-    submitReview() {
-        const {dispatch} = this.props;
+    submitReview() { //used in our button below to submit the user's new review
+        const {dispatch} = this.props; //inspired by login.js's login()
 
-        let details = {
+        let details = { //setting the key-value pairs needed for review to the input user types in
 
             movieid : this.props.match.params.movieId,
             description: this.state.details.description,
@@ -64,7 +64,7 @@ class Movie extends Component {
 
         };
 
-        dispatch(submitForm(details));
+        dispatch(submitForm(details)); //dispatch submitForm with details as argument.
     }
 
     render() {
@@ -105,7 +105,7 @@ class Movie extends Component {
             );
         }
 
-        return (
+        return ( //rendering inspired by login.js's FormGroups and FormControl. Set value domain for rating to be 1-5.
             <div>
             <DetailInfo currentMovie={this.props.selectedMovie} />
                 <Form horizontal>
