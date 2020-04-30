@@ -79,7 +79,7 @@ class Movie extends Component {
         const ReviewInfo = ({reviews}) => {
             return reviews.map((review, i) =>
                 <p key={i}>
-                    <b>{review.reviewer}</b> {review.description}
+                    <b>{review.reviewer}</b> {review.description + " "}
                     <Glyphicon glyph={'star'} /> {review.rating}
                 </p>
             )
@@ -108,7 +108,8 @@ class Movie extends Component {
         return ( //rendering inspired by login.js's FormGroups and FormControl. Set value domain for rating to be 1-5.
             <div>
             <DetailInfo currentMovie={this.props.selectedMovie} />
-                <Form horizontal>
+
+                <Form horizontal> <h5>What did <i><b>you</b></i> think of this film? Leave a Review!</h5>
                     <FormGroup controlId="description">
                         <Col componentClass={ControlLabel} sm={2}>
                             Review
@@ -127,7 +128,7 @@ class Movie extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Col smOffset={2} sm={10}>
-                            <Button onClick={this.submitReview}>Submit</Button>
+                            <Button bsStyle = "primary" onClick={this.submitReview}>Submit</Button>
                         </Col>
                     </FormGroup>
                 </Form>
